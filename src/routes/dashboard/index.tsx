@@ -57,7 +57,7 @@ export const DashboardPage: React.FC = () => {
                 <Col
                     xs={24}
                     sm={24}
-                    xl={12}
+                    xl={24}
                     style={{
                         height: "432px",
                     }}

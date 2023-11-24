@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useMemo } from "react";
 import { Card, Col, Row } from "antd";
 import dayjs from "dayjs";
 import { AreaConfig } from "@ant-design/plots";
-import { Text } from "@/components";
 import predictionData from "../../../../prediction.json";
 import predictionData2 from "../../../../prediction2.json";
 
@@ -10,16 +9,15 @@ const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
 export const DashboardDealsChart: React.FC = () => {
     const dealDataPreviousWeek = useMemo(() => {
-        const lastWeekData = predictionData.data.slice(-7); // Extract the last 7 elements (last 7 days)
-        
+        const lastWeekData = predictionData.data.slice(-7);
         return lastWeekData.map((item) => {
             const date = dayjs(item[0]);
-            const dayOfMonth = date.date(); // Get the day of the month
+            const dayOfMonth = date.date();
 
             return [
                 {
                     timeUnix: date.unix(),
-                    timeText: `Day ${dayOfMonth}`, // Display as Day X
+                    timeText: `Day ${dayOfMonth}`,
                     value: item[1],
                     state: "Solar",
                 },
@@ -34,16 +32,15 @@ export const DashboardDealsChart: React.FC = () => {
     }, []);
 
     const dealDataNextWeek = useMemo(() => {
-        const nextWeekData = predictionData2.data.slice(0, 7); // Extract the first 7 elements (next 7 days)
-        
+        const nextWeekData = predictionData2.data.slice(0, 7);
         return nextWeekData.map((item) => {
             const date = dayjs(item[0]);
-            const dayOfMonth = date.date(); // Get the day of the month
+            const dayOfMonth = date.date();
 
             return [
                 {
                     timeUnix: date.unix(),
-                    timeText: `Day ${dayOfMonth}`, // Display as Day X
+                    timeText: `Day ${dayOfMonth}`,
                     value: item[1],
                     state: "Solar",
                 },
@@ -131,26 +128,23 @@ export const DashboardDealsChart: React.FC = () => {
 
     return (
         <div>
-            <Card>
-                <Row gutter={[16, 16]}>
-                    <Col span={12}>
-                        <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                            Previous week
-                        </Text>
-                        <Suspense>
+            <Row gutter={[16, 16]}>
+                <Col span={12}>
+                    <Card>
+                        <Suspense fallback={<div>Loading...</div>}>
                             <Area {...configPreviousWeek} height={325} />
                         </Suspense>
-                    </Col>
-                    <Col span={12}>
-                        <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                            Next week
-                        </Text>
-                        <Suspense>
+                    </Card>
+                </Col>
+                <Col span={12}>
+                    <Card>
+                        <Suspense fallback={<div>Loading...</div>}>
                             <Area {...configNextWeek} height={325} />
                         </Suspense>
-                    </Col>
-                </Row>
-            </Card>
+                    </Card>
+                </Col>
+            </Row>
         </div>
     );
 };
+
