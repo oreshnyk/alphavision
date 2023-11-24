@@ -1,4 +1,5 @@
 .area {
+    /* width: 50%; */
     height: 48px !important;
 
     @media (min-width: 1600px) {

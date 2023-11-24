@@ -1,75 +1,65 @@
 import React, { lazy, Suspense, useMemo } from "react";
-
-import { useList, useNavigation } from "@refinedev/core";
-
-import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
-import { AreaConfig } from "@ant-design/plots";
-import { Button, Card } from "antd";
+import { Card, Col, Row } from "antd";
 import dayjs from "dayjs";
-import { DealStage } from "interfaces/graphql";
-
+import { AreaConfig } from "@ant-design/plots";
 import { Text } from "@/components";
+import predictionData from "../../../../prediction.json";
+import predictionData2 from "../../../../prediction2.json";
 
 const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
-export const DashboardDealsChart: React.FC<{}> = () => {
-    const { list } = useNavigation();
-    const { data, isError, error } = useList<DealStage>({
-        resource: "dealStages",
-        filters: [{ field: "title", operator: "in", value: ["WON", "LOST"] }],
-        meta: {
-            fields: [
-                "title",
+export const DashboardDealsChart: React.FC = () => {
+    const dealDataPreviousWeek = useMemo(() => {
+        const lastWeekData = predictionData.data.slice(-7); // Extract the last 7 elements (last 7 days)
+        
+        return lastWeekData.map((item) => {
+            const date = dayjs(item[0]);
+            const dayOfMonth = date.date(); // Get the day of the month
+
+            return [
                 {
-                    dealsAggregate: [
-                        { groupBy: ["closeDateMonth", "closeDateYear"] },
-                        { sum: ["value"] },
-                    ],
+                    timeUnix: date.unix(),
+                    timeText: `Day ${dayOfMonth}`, // Display as Day X
+                    value: item[1],
+                    state: "Solar",
                 },
-            ],
-        },
-    });
-
-    if (isError) {
-        console.error("Error fetching deals chart data", error);
-        return null;
-    }
-
-    const dealData = useMemo(() => {
-        const won = data?.data
-            .find((node) => node.title === "WON")
-            ?.dealsAggregate.map((item) => {
-                const { closeDateMonth, closeDateYear } = item.groupBy!;
-                const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
-                return {
+                {
                     timeUnix: date.unix(),
-                    timeText: date.format("MMM YYYY"),
-                    value: item.sum?.value,
-                    state: "Won",
-                };
-            });
+                    timeText: `Day ${dayOfMonth}`,
+                    value: item[2],
+                    state: "Wind",
+                },
+            ];
+        }).flat();
+    }, []);
 
-        const lost = data?.data
-            .find((node) => node.title === "LOST")
-            ?.dealsAggregate.map((item) => {
-                const { closeDateMonth, closeDateYear } = item.groupBy!;
-                const date = dayjs(`${closeDateYear}-${closeDateMonth}-01`);
-                return {
+    const dealDataNextWeek = useMemo(() => {
+        const nextWeekData = predictionData2.data.slice(0, 7); // Extract the first 7 elements (next 7 days)
+        
+        return nextWeekData.map((item) => {
+            const date = dayjs(item[0]);
+            const dayOfMonth = date.date(); // Get the day of the month
+
+            return [
+                {
                     timeUnix: date.unix(),
-                    timeText: date.format("MMM YYYY"),
-                    value: item.sum?.value,
-                    state: "Lost",
-                };
-            });
+                    timeText: `Day ${dayOfMonth}`, // Display as Day X
+                    value: item[1],
+                    state: "Solar",
+                },
+                {
+                    timeUnix: date.unix(),
+                    timeText: `Day ${dayOfMonth}`,
+                    value: item[2],
+                    state: "Wind",
+                },
+            ];
+        }).flat();
+    }, []);
 
-        return [...(won || []), ...(lost || [])].sort(
-            (a, b) => a.timeUnix - b.timeUnix,
-        );
-    }, [data]);
-
-    const config: AreaConfig = {
+    const configPreviousWeek: AreaConfig = {
         isStack: false,
-        data: dealData,
+        data: dealDataPreviousWeek,
         xField: "timeText",
         yField: "value",
         seriesField: "state",
@@ -83,7 +73,7 @@ export const DashboardDealsChart: React.FC<{}> = () => {
             tickCount: 4,
             label: {
                 formatter: (v) => {
-                    return `$${Number(v) / 1000}k`;
+                    return `${parseFloat(v).toFixed(1)}GW`; // Display values as 0.160...GW
                 },
             },
         },
@@ -91,51 +81,76 @@ export const DashboardDealsChart: React.FC<{}> = () => {
             formatter: (data) => {
                 return {
                     name: data.state,
-                    value: `$${Number(data.value) / 1000}k`,
+                    value: `${data.value.toFixed(6)}GW`, // Display tooltip value as 160.764699GW
                 };
             },
         },
         areaStyle: (datum) => {
-            const won = "l(270) 0:#ffffff 0.5:#b7eb8f 1:#52c41a";
-            const lost = "l(270) 0:#ffffff 0.5:#f3b7c2 1:#ff4d4f";
-            return { fill: datum.state === "Won" ? won : lost };
+            return { fill: datum.state === "Solar" ? "#52C41A" : "#1890FF" };
         },
         color: (datum) => {
-            return datum.state === "Won" ? "#52C41A" : "#F5222D";
+            return datum.state === "Solar" ? "#52C41A" : "#1890FF";
+        },
+    };
+
+    const configNextWeek: AreaConfig = {
+        isStack: false,
+        data: dealDataNextWeek,
+        xField: "timeText",
+        yField: "value",
+        seriesField: "state",
+        animation: true,
+        startOnZero: false,
+        smooth: true,
+        legend: {
+            offsetY: -6,
+        },
+        yAxis: {
+            tickCount: 4,
+            label: {
+                formatter: (v) => {
+                    return `${parseFloat(v).toFixed(1)}GW`; // Display values as 0.160...GW
+                },
+            },
+        },
+        tooltip: {
+            formatter: (data) => {
+                return {
+                    name: data.state,
+                    value: `${data.value.toFixed(6)}GW`, // Display tooltip value as 160.764699GW
+                };
+            },
+        },
+        areaStyle: (datum) => {
+            return { fill: datum.state === "Solar" ? "#52C41A" : "#1890FF" };
+        },
+        color: (datum) => {
+            return datum.state === "Solar" ? "#52C41A" : "#1890FF";
         },
     };
 
     return (
-        <Card
-            style={{ height: "100%" }}
-            headStyle={{ padding: "8px 16px" }}
-            bodyStyle={{ padding: "24px 24px 0px 24px" }}
-            title={
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                    }}
-                >
-                    <DollarOutlined />
-                    <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                        Deals
-                    </Text>
-                </div>
-            }
-            extra={
-                <Button
-                    onClick={() => list("deals")}
-                    icon={<RightCircleOutlined />}
-                >
-                    See sales pipeline
-                </Button>
-            }
-        >
-            <Suspense>
-                <Area {...config} height={325} />
-            </Suspense>
-        </Card>
+        <div>
+            <Card>
+                <Row gutter={[16, 16]}>
+                    <Col span={12}>
+                        <Text size="sm" style={{ marginLeft: ".5rem" }}>
+                            Previous week
+                        </Text>
+                        <Suspense>
+                            <Area {...configPreviousWeek} height={325} />
+                        </Suspense>
+                    </Col>
+                    <Col span={12}>
+                        <Text size="sm" style={{ marginLeft: ".5rem" }}>
+                            Next week
+                        </Text>
+                        <Suspense>
+                            <Area {...configNextWeek} height={325} />
+                        </Suspense>
+                    </Col>
+                </Row>
+            </Card>
+        </div>
     );
 };

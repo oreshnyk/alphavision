@@ -122,7 +122,7 @@ const App: React.FC = () => {
                                             index
                                             element={<DashboardPage />}
                                         />
-                                        <Route
+                                        {/* <Route
                                             path="/calendar"
                                             element={
                                                 <CalendarPageWrapper>
@@ -143,8 +143,8 @@ const App: React.FC = () => {
                                                 path="create"
                                                 element={<CalendarCreatePage />}
                                             />
-                                        </Route>
-                                        <Route
+                                        </Route> */}
+                                        {/* <Route
                                             path="/scrumboard"
                                             element={<Outlet />}
                                         >
@@ -179,7 +179,7 @@ const App: React.FC = () => {
                                                     }
                                                 />
                                             </Route>
-                                            <Route
+                                            {/* <Route
                                                 path="sales"
                                                 element={
                                                     <SalesPage>
@@ -224,8 +224,8 @@ const App: React.FC = () => {
                                                         <SalesCreateDetails />
                                                     }
                                                 />
-                                            </Route>
-                                        </Route>
+                                            </Route> */}
+                                        {/* </Route> */}
                                         <Route
                                             path="/companies"
                                             element={
@@ -370,7 +370,7 @@ const App: React.FC = () => {
                                 <UnsavedChangesNotifier />
                                 <DocumentTitleHandler />
                             </Refine>
-                            <DevtoolsPanel />
+                            {/* <DevtoolsPanel /> */}
                         </DevtoolsProvider>
                     </AntdApp>
                 </ConfigProvider>

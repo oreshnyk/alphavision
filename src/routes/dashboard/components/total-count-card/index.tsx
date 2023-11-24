@@ -74,7 +74,7 @@ export const DashboardTotalCountCard: React.FC<{
 
     return (
         <Card
-            style={{ height: "96px", padding: 0 }}
+            style={{ height: "96px", padding: 0, }}
             bodyStyle={{
                 padding: "8px 8px 8px 12px",
             }}
@@ -120,12 +120,15 @@ export const DashboardTotalCountCard: React.FC<{
                             }}
                         />
                     ) : (
-                        data?.total
+                        "98MW"
+                        // data?.total
                     )}
                 </Text>
+                {/* graph for suspense */}
                 <Suspense>
                     <Area {...config} />
                 </Suspense>
+                {/* graph for suspense */}
             </div>
         </Card>
     );
@@ -174,11 +177,12 @@ const variants: {
                 />
             </IconWrapper>
         ),
-        title: "Number of companies",
+        title: "Past 48 hours",
+        // data that is showed on little graph inside component
         data: [
             {
                 index: "1",
-                value: 3500,
+                value: 7000,
             },
             {
                 index: "2",
@@ -197,6 +201,7 @@ const variants: {
                 value: 5000,
             },
         ],
+        // data that is showed on little graph inside component
     },
     contacts: {
         primaryColor: "#52C41A",
@@ -211,7 +216,7 @@ const variants: {
                 />
             </IconWrapper>
         ),
-        title: "Number of contacts",
+        title: "Next 48 hour",
         data: [
             {
                 index: "1",

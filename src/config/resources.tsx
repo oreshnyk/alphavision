@@ -26,14 +26,14 @@ export const resources: IResourceItem[] = [
         edit: "/calendar/edit/:id",
         show: "/calendar/show/:id",
         meta: {
-            label: "Calendar",
+            label: "Grid Status",
             icon: <CalendarOutlined />,
         },
     },
     {
         name: "scrumboard",
         meta: {
-            label: "Scrumboard",
+            label: "Long Term Prediction",
             icon: <ProjectOutlined />,
         },
     },
@@ -92,7 +92,7 @@ export const resources: IResourceItem[] = [
         create: "/companies/create",
         edit: "/companies/edit/:id",
         meta: {
-            label: "Companies",
+            label: "Warning Map",
             icon: <ShopOutlined />,
         },
     },
@@ -111,7 +111,7 @@ export const resources: IResourceItem[] = [
         edit: "/contacts/edit/:id",
         show: "/contacts/show/:id",
         meta: {
-            label: "Contacts",
+            label: "Short time prediction",
             icon: <TeamOutlined />,
         },
     },

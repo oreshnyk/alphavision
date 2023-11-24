@@ -121,7 +121,7 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
             title={
                 <Space size="middle">
                     <AuditOutlined />
-                    <Text>Deals</Text>
+                    <Text>Past 48 hours</Text>
 
                     {showResetFilters?.length > 0 && (
                         <Button

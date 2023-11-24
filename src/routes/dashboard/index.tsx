@@ -2,12 +2,12 @@ import React from "react";
 
 import { Col, Row } from "antd";
 
-import { CalendarUpcomingEvents } from "@/components";
+// import { CalendarUpcomingEvents } from "@/components";
 
 import {
     CompaniesMap,
     DashboardDealsChart,
-    DashboardLatestActivities,
+    // DashboardLatestActivities,
     DashboardTasksChart,
     DashboardTotalCountCard,
     DashboardTotalRevenueChart,
@@ -23,9 +23,9 @@ export const DashboardPage: React.FC = () => {
                 <Col xs={24} sm={24} xl={8}>
                     <DashboardTotalCountCard resource="contacts" />
                 </Col>
-                <Col xs={24} sm={24} xl={8}>
+                {/* <Col xs={24} sm={24} xl={8}>
                     <DashboardTotalCountCard resource="deals" />
-                </Col>
+                </Col> */}
             </Row>
 
             <Row
@@ -34,7 +34,7 @@ export const DashboardPage: React.FC = () => {
                     marginTop: "32px",
                 }}
             >
-                <Col
+                {/* <Col
                     xs={24}
                     sm={24}
                     xl={8}
@@ -43,11 +43,21 @@ export const DashboardPage: React.FC = () => {
                     }}
                 >
                     <DashboardTotalRevenueChart />
-                </Col>
+                </Col> */}
+                {/* <Col
+                    xs={24}
+                    sm={24}
+                    xl={12}
+                    style={{
+                        height: "432px",
+                    }}
+                >
+                    <DashboardDealsChart />
+                </Col> */}
                 <Col
                     xs={24}
                     sm={24}
-                    xl={16}
+                    xl={12}
                     style={{
                         height: "432px",
                     }}
@@ -63,10 +73,10 @@ export const DashboardPage: React.FC = () => {
                 }}
             >
                 <Col xs={24} sm={24} xl={14} xxl={16}>
-                    <DashboardLatestActivities />
+                    {/* <DashboardLatestActivities /> */}
                 </Col>
                 <Col xs={24} sm={24} xl={10} xxl={8}>
-                    <CalendarUpcomingEvents showGoToListButton />
+                    {/* <CalendarUpcomingEvents showGoToListButton /> */}
                 </Col>
             </Row>
 
