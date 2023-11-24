@@ -256,7 +256,7 @@ const variants: {
                 <StepBackwardOutlined className="md" style={{ color: "#1677FF" }} />
             </IconWrapper>
         ),
-        title: "Past 48 hours",
+        title: "Average energy generated for the Past 48 hours",
         data: [
             { index: "1", value: 7000 },
             { index: "2", value: 2750 },
@@ -273,7 +273,7 @@ const variants: {
                 <StepForwardOutlined className="md" style={{ color: "#52C41A" }} />
             </IconWrapper>
         ),
-        title: "Next 48 hour",
+        title: "Average energy generated for the Next 48 hour",
         data: [
             { index: "1", value: 10000 },
             { index: "2", value: 19500 },
