@@ -17,10 +17,10 @@ export const DashboardPage: React.FC = () => {
     return (
         <div className="page-container">
             <Row gutter={[32, 32]}>
-                <Col xs={24} sm={24} xl={8}>
+                <Col xs={24} sm={24} xl={12}>
                     <DashboardTotalCountCard resource="companies" />
                 </Col>
-                <Col xs={24} sm={24} xl={8}>
+                <Col xs={24} sm={24} xl={12}>
                     <DashboardTotalCountCard resource="contacts" />
                 </Col>
                 {/* <Col xs={24} sm={24} xl={8}>

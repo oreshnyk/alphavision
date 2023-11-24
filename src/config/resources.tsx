@@ -2,11 +2,14 @@ import type { IResourceItem } from "@refinedev/core";
 
 import {
     CalendarOutlined,
+    HeatMapOutlined,
     ContainerOutlined,
     CrownOutlined,
     DashboardOutlined,
+    AreaChartOutlined,
     ProjectOutlined,
     ShopOutlined,
+    AlertOutlined,
     TeamOutlined,
 } from "@ant-design/icons";
 
@@ -16,7 +19,7 @@ export const resources: IResourceItem[] = [
         list: "/",
         meta: {
             label: "Dashboard",
-            icon: <DashboardOutlined />,
+            icon: <AreaChartOutlined />,
         },
     },
     {
@@ -27,7 +30,7 @@ export const resources: IResourceItem[] = [
         show: "/calendar/show/:id",
         meta: {
             label: "Grid Status",
-            icon: <CalendarOutlined />,
+            icon: <HeatMapOutlined />,
         },
     },
     {
@@ -93,7 +96,7 @@ export const resources: IResourceItem[] = [
         edit: "/companies/edit/:id",
         meta: {
             label: "Warning Map",
-            icon: <ShopOutlined />,
+            icon: <AlertOutlined />,
         },
     },
     {
