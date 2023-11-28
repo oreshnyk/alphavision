@@ -7,8 +7,8 @@ import predictionData2 from "../../../../prediction2.json";
 
 const Area = lazy(() => import("@ant-design/plots/es/components/area"));
 
-export const DashboardDealsChart: React.FC = () => {
-    const dealDataPreviousWeek = useMemo(() => {
+export const DashboardPredictChart: React.FC = () => {
+    const predictDataPreviousWeek = useMemo(() => {
         const lastWeekData = predictionData.data.slice(-7);
         return lastWeekData.map((item) => {
             const date = dayjs(item[0]);
@@ -31,7 +31,7 @@ export const DashboardDealsChart: React.FC = () => {
         }).flat();
     }, []);
 
-    const dealDataNextWeek = useMemo(() => {
+    const predictionProdNextWeek = useMemo(() => {
         const nextWeekData = predictionData2.data.slice(0, 7);
         return nextWeekData.map((item) => {
             const date = dayjs(item[0]);
@@ -56,7 +56,7 @@ export const DashboardDealsChart: React.FC = () => {
 
     const configPreviousWeek: AreaConfig = {
         isStack: false,
-        data: dealDataPreviousWeek,
+        data: predictDataPreviousWeek,
         xField: "timeText",
         yField: "value",
         seriesField: "state",
@@ -92,7 +92,7 @@ export const DashboardDealsChart: React.FC = () => {
 
     const configNextWeek: AreaConfig = {
         isStack: false,
-        data: dealDataNextWeek,
+        data: predictionProdNextWeek,
         xField: "timeText",
         yField: "value",
         seriesField: "state",

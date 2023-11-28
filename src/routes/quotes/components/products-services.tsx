@@ -148,8 +148,6 @@ export const ProductsServices = () => {
                 );
                 items?.forEach((item) => {
                     if ("totalPrice" in item) {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
                         delete item.totalPrice;
                     }
                 });

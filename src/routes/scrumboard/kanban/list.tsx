@@ -83,8 +83,6 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         },
     });
 
-    // its convert Task[] to TaskStage[] (group by stage) for kanban
-    // uses `stages` and `tasks` from useList hooks
     const taskStages = useMemo(() => {
         if (!tasks?.data || !stages?.data)
             return {
@@ -96,7 +94,6 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
             (task) => task.stageId === null,
         );
 
-        // prepare unassigned stage
         const grouped: TaskStage[] = stages.data.map((stage) => ({
             ...stage,
             tasks: tasks.data.filter(

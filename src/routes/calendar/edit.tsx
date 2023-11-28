@@ -57,7 +57,6 @@ export const CalendarEditPage: React.FC = () => {
             ),
         });
 
-        // if more than 24 hours, set as all day event
         if (utcEndDate.diff(utcStartDate, "hours") >= 23) {
             setIsAllDayEvent(true);
             form.setFieldsValue({

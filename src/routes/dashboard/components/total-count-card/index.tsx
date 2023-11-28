@@ -13,7 +13,6 @@ const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
 type Type = "companies" | "contacts" | "deals";
 
-// Function to calculate average
 function calculateAverage(values: number[]): number {
     if (values.length === 0) {
         return 0;
@@ -73,7 +72,7 @@ export const DashboardTotalCountCard: React.FC<{
         appendPadding: [1, 0, 0, 0],
         padding: 0,
         syncViewPadding: true,
-        data: chartData, // Set the chartData dynamically based on the resource
+        data: chartData, 
         autoFit: true,
         tooltip: false,
         animation: false,
@@ -115,7 +114,7 @@ export const DashboardTotalCountCard: React.FC<{
             },
             data: [
                 {
-                    yAxis: combinedAverageEnergy, // Use the calculated combined average
+                    yAxis: combinedAverageEnergy, 
                     lineStyle: {
                         stroke: 'red',
                         lineDash: [3, 3],

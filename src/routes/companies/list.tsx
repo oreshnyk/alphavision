@@ -89,7 +89,6 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
     const onViewChange = (value: View) => {
         setView(value);
         setFilters([], "replace");
-        // TODO: useForm should handle this automatically. remove this when its fixed from antd useForm.
         searchFormProps.form?.resetFields();
     };
 

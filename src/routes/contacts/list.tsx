@@ -100,7 +100,6 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
     const onViewChange = (value: View) => {
         setView(value);
         setFilters([], "replace");
-        // TODO: useForm should handle this automatically. remove this when its fixed from antd useForm.
         searchFormProps.form?.resetFields();
     };
 

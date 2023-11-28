@@ -79,7 +79,6 @@ const TitleInput = ({
     onChange,
     loading,
 }: {
-    // value is set by <Form.Item />
     value?: string;
     onChange?: (value: string) => void;
     loading?: boolean;

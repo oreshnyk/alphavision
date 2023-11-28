@@ -101,9 +101,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         },
     });
 
-    // its convert Deal[] to DealStage[] (group by stage) for kanban
-    // its also group `won` and `lost` stages
-    // uses `stages` and `tasks` from useList hooks
+    
     const stageGrouped = useMemo(() => {
         if (!stages?.data || !deals?.data)
             return {
@@ -134,7 +132,6 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
         const stageWon = grouped.find((stage) => stage.title === "WON");
         const stageLost = grouped.find((stage) => stage.title === "LOST");
-        // remove won and lost from grouped
         const stageAll = grouped.filter(
             (stage) => stage.title !== "WON" && stage.title !== "LOST",
         );

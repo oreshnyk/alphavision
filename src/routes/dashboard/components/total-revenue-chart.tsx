@@ -78,7 +78,6 @@ export const DashboardTotalRevenueChart: React.FC<{}> = () => {
         animation:
             expectedRevenueIsLoading || realizedRevenueIsLoading ? false : true,
         supportCSSTransform: true,
-        // antd expects a percentage value between 0 and 1
         percent: realizationPercentageOfExpected / 100,
         range: {
             color: "l(0) 0:#D9F7BE 1:#52C41A",

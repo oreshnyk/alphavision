@@ -3,7 +3,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
 import { ErrorComponent, useNotificationProvider } from "@refinedev/antd";
 import { Authenticated, Refine } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { DevtoolsProvider } from "@refinedev/devtools";
 import routerProvider, {
     CatchAllNavigate,
     DocumentTitleHandler,
@@ -27,12 +27,6 @@ import {
 import { FullScreenLoading, Layout } from "./components";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
-    CalendarCreatePage,
-    CalendarEditPage,
-    CalendarPageWrapper,
-    CalendarShowPage,
-} from "./routes/calendar";
-import {
     CompanyCreatePage,
     CompanyEditPage,
     CompanyListPage,
@@ -52,21 +46,6 @@ import {
     QuotesShowPage,
 } from "./routes/quotes";
 import { RegisterPage } from "./routes/register";
-import {
-    KanbanCreatePage,
-    KanbanCreateStage,
-    KanbanEditPage,
-    KanbanEditStage,
-    KanbanPage,
-} from "./routes/scrumboard/kanban";
-import {
-    SalesCreateDetails,
-    SalesCreatePage,
-    SalesCreateStage,
-    SalesEditPage,
-    SalesEditStage,
-    SalesPage,
-} from "./routes/scrumboard/sales";
 import { UpdatePasswordPage } from "./routes/update-password";
 import { useAutoLoginForDemo } from "./hooks";
 
@@ -76,8 +55,6 @@ import "./styles/fc.css";
 import "./styles/index.css";
 
 const App: React.FC = () => {
-    // This hook is used to automatically login the user.
-    // We use this hook to skip the login page and demonstrate the application more quickly.
     const { loading } = useAutoLoginForDemo();
 
     if (loading) {
@@ -122,110 +99,6 @@ const App: React.FC = () => {
                                             index
                                             element={<DashboardPage />}
                                         />
-                                        {/* <Route
-                                            path="/calendar"
-                                            element={
-                                                <CalendarPageWrapper>
-                                                    <Outlet />
-                                                </CalendarPageWrapper>
-                                            }
-                                        >
-                                            <Route index element={null} />
-                                            <Route
-                                                path="show/:id"
-                                                element={<CalendarShowPage />}
-                                            />
-                                            <Route
-                                                path="edit/:id"
-                                                element={<CalendarEditPage />}
-                                            />
-                                            <Route
-                                                path="create"
-                                                element={<CalendarCreatePage />}
-                                            />
-                                        </Route> */}
-                                        {/* <Route
-                                            path="/scrumboard"
-                                            element={<Outlet />}
-                                        >
-                                            <Route
-                                                path="kanban"
-                                                element={
-                                                    <KanbanPage>
-                                                        <Outlet />
-                                                    </KanbanPage>
-                                                }
-                                            >
-                                                <Route
-                                                    path="create"
-                                                    element={
-                                                        <KanbanCreatePage />
-                                                    }
-                                                />
-                                                <Route
-                                                    path="edit/:id"
-                                                    element={<KanbanEditPage />}
-                                                />
-                                                <Route
-                                                    path="stages/create"
-                                                    element={
-                                                        <KanbanCreateStage />
-                                                    }
-                                                />
-                                                <Route
-                                                    path="stages/edit/:id"
-                                                    element={
-                                                        <KanbanEditStage />
-                                                    }
-                                                />
-                                            </Route>
-                                            {/* <Route
-                                                path="sales"
-                                                element={
-                                                    <SalesPage>
-                                                        <Outlet />
-                                                    </SalesPage>
-                                                }
-                                            >
-                                                <Route
-                                                    path="create"
-                                                    element={
-                                                        <SalesCreatePage>
-                                                            <Outlet />
-                                                        </SalesCreatePage>
-                                                    }
-                                                >
-                                                    <Route
-                                                        path="company/create"
-                                                        element={
-                                                            <CompanyCreatePage
-                                                                isOverModal
-                                                            />
-                                                        }
-                                                    />
-                                                </Route>
-                                                <Route
-                                                    path="edit/:id"
-                                                    element={<SalesEditPage />}
-                                                />
-                                                <Route
-                                                    path="stages/create"
-                                                    element={
-                                                        <SalesCreateStage />
-                                                    }
-                                                />
-                                                <Route
-                                                    path="stages/edit/:id"
-                                                    element={<SalesEditStage />}
-                                                />
-                                                <Route
-                                                    path="details/edit/:id"
-                                                    element={
-                                                        <SalesCreateDetails />
-                                                    }
-                                                />
-                                            </Route> */}
-                                        {/* </Route> */}
                                         <Route
                                             path="/companies"
                                             element={
@@ -370,7 +243,6 @@ const App: React.FC = () => {
                                 <UnsavedChangesNotifier />
                                 <DocumentTitleHandler />
                             </Refine>
-                            {/* <DevtoolsPanel /> */}
                         </DevtoolsProvider>
                     </AntdApp>
                 </ConfigProvider>

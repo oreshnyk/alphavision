@@ -137,7 +137,6 @@ export const QuotesFormModal: FC<Props> = ({
                     onCancel();
                     return;
                 }
-                //TODO: modalProps.onCancel expect an event so, I used close. Actually both of them are same.
                 close();
                 list("quotes", "replace");
             }}
