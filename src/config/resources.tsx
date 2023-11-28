@@ -1,14 +1,11 @@
 import type { IResourceItem } from "@refinedev/core";
 
 import {
-    CalendarOutlined,
     HeatMapOutlined,
     ContainerOutlined,
-    CrownOutlined,
-    DashboardOutlined,
+    CrownOutlined, 
     AreaChartOutlined,
     ProjectOutlined,
-    ShopOutlined,
     AlertOutlined,
     TeamOutlined,
 } from "@ant-design/icons";
@@ -47,7 +44,7 @@ export const resources: IResourceItem[] = [
         create: "/scrumboard/kanban/create",
         edit: "/scrumboard/kanban/edit/:id",
         meta: {
-            label: "Project Kanban",
+            label: "Long Term",
             parent: "scrumboard",
         },
     },
@@ -66,7 +63,7 @@ export const resources: IResourceItem[] = [
         create: "/scrumboard/sales/create",
         edit: "/scrumboard/sales/edit/:id",
         meta: {
-            label: "Sales Pipeline",
+            label: "Short Term",
             parent: "scrumboard",
         },
     },

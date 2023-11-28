@@ -27,22 +27,12 @@ import {
 import { FullScreenLoading, Layout } from "./components";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
-    CompanyCreatePage,
     CompanyEditPage,
-    CompanyListPage,
 } from "./routes/companies";
-import {
-    ContactCreatePage,
-    ContactShowPage,
-    ContactsListPage,
-} from "./routes/contacts";
 import { DashboardPage } from "./routes/dashboard";
 import { ForgotPasswordPage } from "./routes/forgot-password";
 import { LoginPage } from "./routes/login";
 import {
-    QuotesCreatePage,
-    QuotesEditPage,
-    QuotesListPage,
     QuotesShowPage,
 } from "./routes/quotes";
 import { RegisterPage } from "./routes/register";
@@ -99,97 +89,11 @@ const App: React.FC = () => {
                                             index
                                             element={<DashboardPage />}
                                         />
-                                        <Route
-                                            path="/companies"
-                                            element={
-                                                <CompanyListPage>
-                                                    <Outlet />
-                                                </CompanyListPage>
-                                            }
-                                        >
-                                            <Route
-                                                path="create"
-                                                element={<CompanyCreatePage />}
-                                            />
-                                        </Route>
+                                        {/* add map component here? */}
                                         <Route
                                             path="/companies/edit/:id"
                                             element={<CompanyEditPage />}
                                         />
-                                        <Route
-                                            path="/contacts"
-                                            element={
-                                                <ContactsListPage>
-                                                    <Outlet />
-                                                </ContactsListPage>
-                                            }
-                                        >
-                                            <Route index element={null} />
-                                            <Route
-                                                path="show/:id"
-                                                element={<ContactShowPage />}
-                                            />
-                                            <Route
-                                                path="create"
-                                                element={
-                                                    <ContactCreatePage>
-                                                        <Outlet />
-                                                    </ContactCreatePage>
-                                                }
-                                            >
-                                                <Route
-                                                    path="company-create"
-                                                    element={
-                                                        <CompanyCreatePage
-                                                            isOverModal
-                                                        />
-                                                    }
-                                                />
-                                            </Route>
-                                        </Route>
-                                        <Route
-                                            path="/quotes"
-                                            element={
-                                                <QuotesListPage>
-                                                    <Outlet />
-                                                </QuotesListPage>
-                                            }
-                                        >
-                                            <Route
-                                                path="create"
-                                                element={
-                                                    <QuotesCreatePage>
-                                                        <Outlet />
-                                                    </QuotesCreatePage>
-                                                }
-                                            >
-                                                <Route
-                                                    path="company-create"
-                                                    element={
-                                                        <CompanyCreatePage
-                                                            isOverModal
-                                                        />
-                                                    }
-                                                />
-                                            </Route>
-                                            <Route
-                                                path="edit/:id"
-                                                element={
-                                                    <QuotesEditPage>
-                                                        <Outlet />
-                                                    </QuotesEditPage>
-                                                }
-                                            >
-                                                <Route
-                                                    path="company-create"
-                                                    element={
-                                                        <CompanyCreatePage
-                                                            isOverModal
-                                                        />
-                                                    }
-                                                />
-                                            </Route>
-                                        </Route>
                                         <Route
                                             path="/quotes/show/:id"
                                             element={<QuotesShowPage />}

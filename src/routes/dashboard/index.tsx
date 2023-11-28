@@ -53,7 +53,7 @@ export const DashboardPage: React.FC = () => {
                 </Col>
             </Row>
 
-            <Row
+            {/* <Row
                 gutter={[32, 32]}
                 style={{
                     marginTop: "32px",
@@ -79,7 +79,7 @@ export const DashboardPage: React.FC = () => {
                 >
                     <CompaniesMap />
                 </Col>
-            </Row>
+            </Row> */}
         </div>
     );
 };

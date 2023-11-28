@@ -94,7 +94,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                 >
                     <ProjectOutlined />
                     <Text size="sm" style={{ marginLeft: ".5rem" }}>
-                        Tasks
+                        Current Production status
                     </Text>
                 </div>
             }
@@ -103,7 +103,7 @@ export const DashboardTasksChart: React.FC<{}> = () => {
                     onClick={() => list("tasks")}
                     icon={<RightCircleOutlined />}
                 >
-                    See kanban board
+                    More details
                 </Button>
             }
         >
